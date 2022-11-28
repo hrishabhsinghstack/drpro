@@ -8,6 +8,8 @@ import { PrimeNGConfig } from 'primeng/api';
 export class AppComponent {
   title = 'drpro';
 
+  visibleSidebar5: any;
+
   constructor(private primengConfig: PrimeNGConfig) {}
 
     ngOnInit() {
