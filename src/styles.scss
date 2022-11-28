@@ -1,1 +1,399 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$drpro-primary: mat.define-palette(mat.$light-blue-palette, 800);
+$drpro-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+// $drpro-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$drpro-theme: mat.define-light-theme((
+  color: (
+    primary: $drpro-primary,
+    accent: $drpro-accent,
+    // warn: $drpro-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($drpro-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+// custom scroll
+
+@mixin custom-scroll($size) {
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 10px;
+  }
+}
+* {
+  @include custom-scroll(8px);
+}
+
+.py-5{
+  margin: 3rem 0;
+}
+// HEADER
+.header{
+  border-bottom: 1px solid #e7e7e7;
+  background: #fff;
+  height: 60px;
+  .inner{
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      .logo {
+          a {
+              display: flex;
+              align-items: center;
+              img {
+                  width: 100%;
+                  max-width: 55px;
+              }
+          }
+      }
+      .header-manu {
+          display: flex;
+          align-items: center;
+          list-style: none;
+          gap: 24px;
+          margin: 0;
+          padding: 0;
+          .manu-item {
+              font-size: 16px;
+              color: #808080;
+              cursor: pointer;
+              &.active{
+                  color: #0071BD !important;
+              }
+          }
+      }
+      .divider {
+          width: 1px;
+          background: #cbcbcb;
+          margin: 0 2rem;
+          height: 24px;
+      }
+      .header-right{}
+  }
+}
+// LAYOUT
+.main-layout {
+  display: flex;
+  height: calc(100vh - 60px);
+  // justify-content: space-around;
+  .sidebar-menu {
+      width: 100%;
+      max-width: 120px;
+      border-right: 1px solid #e7e7e7;
+      overflow: auto;
+      .sidebar-manu-list {
+          list-style: none;
+          padding: 16px 0;
+          height: calc(100vh - 60px);
+          margin: 0;
+          position: relative;
+          .sidebar-list-item {
+              padding: 5px 16px;
+              &:not(.disable) {
+                  cursor: pointer;
+              }
+              .sidebar-item-inner {
+                  text-decoration: none;
+                  color: #7a7a7a;
+                  text-align: center;
+                  display: flex;
+                  flex-direction: column;
+                  align-content: center;
+                  justify-content: center;
+                  padding: 10px 8px;
+                  flex: 1;
+                  align-items: center;
+                  border-radius: 7px;
+                  .icon {
+                      background-color: #f8f8f8;
+                      width: 45px;
+                      height: 45px;
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: center;
+                      align-items: center;
+                      border-radius: 50%;
+                      margin-bottom: 5px;
+                      .img{
+                          fill: #7A7A7A;
+                      }
+                  }
+                  .text {
+                      font-size: 14px;
+                  }
+              }
+              &.active{
+                  .sidebar-item-inner {
+                      .icon {
+                       .img{
+                          fill: #0071BD !important;
+                       }
+                      }
+                      .text{
+                          color: #0071BD;
+                      }
+                  }
+
+              }
+              &:last-child {
+                  position: absolute;
+                  width: 100%;
+                  bottom: 0;
+                  border-top: 1px solid #E7E7E7;
+                  background: #fff;
+              }
+          }
+      }
+
+  }
+}
+.body-wrapper {
+  background: #fff;
+  flex: 1;
+  overflow: auto;
+}
+
+.main-title {
+  padding: 1.5rem;
+  .title {
+      font-size: 28px;
+      margin-bottom: 0px;
+      font-weight: 500;
+  }
+}
+.outline-secondary-btn {
+  background: #fff;
+  border: 1px solid #E7E7E7;
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.primary-btn {
+  background: #0071BD;
+  border: transparent;
+  padding: 0.5rem 0.8rem;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.toolbar {
+  display: flex;
+  align-content: center;
+  margin: 0;
+  padding: 1.5rem;
+  background: #f7f7f7;
+  align-items: center;
+  .left-toolbar {
+      flex: 1;
+      max-width: 550px;
+      margin-right: 12px;
+      .input-box{
+          .input-style{
+              padding: 0px 0px 0px 8px;
+              width: 100%;
+              height: 54px;
+              border: 1px solid rgba(0, 0, 0, 0.38);
+              border-radius: 8px;
+          }
+      }
+  }
+  .right-toolbar {
+      margin-left: auto;
+  }
+}
+// No-records
+.no-records {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  padding: 24px 16px;
+  max-width: 370px;
+  .no-records-inner {
+      .no-records-icon {
+          margin: auto;
+          width: 100px;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          img {
+              width: 100%;
+          }
+      }
+      .no-records-content {
+          margin: 24px 0;
+          h4 {
+              font-size: 20px;
+              margin-bottom: 4px;
+              font-weight: 500;
+          }
+          p {
+              color: #7a7a7a;
+              width: 100%;
+          }
+      }
+  }
+}
+// BOOK-APPOINTMENT
+.form-box{
+  padding: 2rem;
+  display: flex;
+  .right-box {
+      margin-left: 3rem;
+  }
+}
+.modal-box {
+  flex: 1;
+  .modal-header {
+      display: flex;
+      .left {
+          margin-top: 8px;
+      }
+      .right {
+          .title{
+              font-weight: 500;
+              font-size: 26px;
+              margin-bottom: 13px;
+          }
+          .des{
+              font-size: 16px;
+              color: #818181;
+          }
+      }
+  }
+  .modal-body {
+      padding: 2rem 0;
+      max-height: calc(100vh - 240px);
+      overflow: auto;
+      height: 100vh;
+  }
+  .modal-footer {
+      display: flex;
+      gap: 1rem;
+      justify-content: end;
+      padding: 1rem 0;
+  }
+}
+.add-form {
+  // padding: 2rem;
+  max-height: calc(100vh - 140px);
+  // overflow: auto;
+  // height: 100vh;
+  width: 100%;
+  max-width: 600px;
+  .mat-input-box {
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      position: relative;
+      .icon{
+          color: #7C7C7C;
+      }
+      .clear-text {
+          position: absolute;
+          color: #555;
+          font-size: 28px;
+          top: 0px;
+          right: -2px;
+      }
+      .fieldset {
+          width: 100%;
+          .input-style{
+              border-bottom: 1px solid #9A9898 !important;
+              outline: none;
+              border: transparent;
+              padding: 0.6rem 0.4rem;
+              width: 100%;
+              max-width: 92%;
+              &:focus-visible{
+                  outline: none;
+              }
+              &:focus{
+                  border-bottom: 1px solid #0071BD !important;
+              }
+              &:active{
+                  border-bottom: 1px solid #0071BD !important;
+              }
+              /* with required attribute */
+              &:required {
+                  color: #3182CE;
+                  &:valid:focus + .clear-text {
+                  display: inline-block;
+                  }
+                  &:invalid + .clear-text {
+                  display: none;
+                  }
+              }
+              /* no required attribute */
+              &:not([required]) {
+                  &.valid-text:focus + .clear-text {
+                  display: inline-block;
+                  }
+                  &:not(.valid-text) + .clear-text {
+                  display: none;
+                  }
+              }
+          }
+      }
+  }
+}
+.main{
+  label{
+      color: #888888;
+  }
+  .menu{
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem 0;
+      .menu-item{
+          transition: all 0.3s ease;
+          cursor: pointer;
+          display: inline-block;
+          padding: 8px 15px;
+          color: #000;
+          font-family: sans-serif;
+          background-color: #E9E9E9;
+          &.selected{
+              background-color: #025E9B;
+              color: #fff;
+            }
+      }
+  }
+}
+

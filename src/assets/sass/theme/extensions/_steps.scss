@@ -1,0 +1,37 @@
+.p-steps {
+
+    .p-steps-item {
+
+        &:before {
+        }
+
+        .p-menuitem-link {
+            z-index: 1;
+            cursor: pointer;
+            .p-steps-number {
+              border: 1px solid #e9ecef;
+              background: #ffffff;
+            }
+
+            .p-steps-title {
+                background: #fff;
+            }
+        }
+
+        &.p-highlight {
+            .p-steps-number {
+                background-color: $primaryColor;
+                color: $primaryTextColor;
+            }
+
+            .p-steps-title {
+                font-weight: 600;
+                color: $textColor;
+            }
+        }
+
+        &.p-disabled {
+            opacity: 1;
+        }
+    }
+}

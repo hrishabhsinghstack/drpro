@@ -30,6 +30,11 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/primeng/resources/themes/md-light-deeppurple/theme.css",
+              "src/assets/theme/theme-blue-grey.scss",
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng/resources/primeng.min.css",
+              "./node_modules/primeflex/primeflex.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -100,5 +105,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "7cbb410f-63b2-446c-9cd7-b378de04da2c"
   }
 }
