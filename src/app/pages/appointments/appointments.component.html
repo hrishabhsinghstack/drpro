@@ -1,34 +1,192 @@
 <div class="inner-box">
-  <div class="main-title">
-      <h3 class="title">Appointments</h3>
-  </div>
-  <div class="toolbar toolbar-style">
-      <div class="left-toolbar">
-          <div class="input-box">
-              <input class="input-style" type="search" placeholder="Search patient">
-          </div>
-      </div>
-      <div class="right-toolbar">
-         <a href="/book-appointment.html">
-          <button class= "primary-btn">Book Appointment</button>
-         </a>
-      </div>
-  </div>
-
-
-
-  <div class="table-body">
-      <div class="no-records" >
-          <div class="no-records-inner py-5">
-              <div class="no-records-icon">
-                  <img src="../../../assets/images/no-appointment.png" alt="">
+    <div class="main-title">
+        <h3 class="title">Appointments</h3>
+    </div>
+    <div class="toolbar toolbar-style">
+        <div class="left-toolbar">
+            <div class="input-box">
+                <input class="input-style" type="search" placeholder="Search patient">
+            </div>
+        </div>
+        <div class="right-toolbar">
+            <button class="ml-3 p-button" (click)="menu.toggle($event)" style="gap: 4px;">
+              View: Today’s Appointments
+              <i class="pi pi-angle-down"></i>
+          </button>
+          <p-menu #menu [popup]="true" [model]="items"></p-menu>  
+          <button pButton pRipple type="button" label="Book Appointment" class="p-button-raised ml-2"></button>
+           
+        </div>
+    </div>
+  
+    <table class="table-box">
+     <div class="table-header">
+      <tr>
+          <th>Patient</th>
+          <th>Status</th>
+          <th>Date & Time</th>
+          <th>Phone</th>
+          <th>Consultant</th>
+          <th>Action</th>
+         </tr>
+     </div>
+     <tr class="list-row" [routerLink]="['/detail']" routerLinkActive="active">
+      <td>
+          <div class="user-detail">
+              <p-avatar label="A T" styleClass="p-mr-2" 
+              [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
+              <div class="right">
+                  <label>Aditya Tripathi</label>
+                  <p class="sub-title">26 Year,<span>Male</span></p>
               </div>
-              <div class="no-records-content">
-                  <h4>No appointment !</h4>
-                  <p>To Book an Appointmnet</p>
-                  <!-- <button class= "primary-btn">Book Appointment</button> -->
+          </div>
+      </td>
+      <td>
+          <div class="status">
+              <p-tag styleClass="p-mr-2" value="In-Room" severity="success"></p-tag>
+          </div>
+      </td>
+      <td>
+         <div class="list-cell">
+          <p>06:00 PM</p>
+          <small class="p-text-secondary">8 Feb 2022</small>
+         </div>
+      </td>
+      <td>
+         <div class="list-cell">
+          <p>+91 9876543215</p>
+          <small class="link" >Contact</small>
+          </div>
+      </td>
+      <td>
+         <p> Dr. Ananth</p>
+      </td>
+      <td>
+        <div class="action">
+          <button pButton pRipple type="button" label="Checkin" class="p-button-raised small-button"></button>
+          <button pButton pRipple type="button" icon="pi pi-ellipsis-v"
+          class="ml-2 p-button-rounded p-button-secondary p-button-text"></button>
+        </div>
+      </td>
+     </tr>
+    </table>
+  </div>
+  
+  
+  <!-- HEADER-SEARCH-POPUP-CONTENT -->
+  <div style="display: flex;">
+      <div class="search-filter-box mt-2">
+          <div class="inner-detail">
+              <p-tabView>
+                  <p-tabPanel header="By Name">
+                      <div class="fieldset mb-2">
+                          <input class="input-style" placeholder="Search Patient" type="text" pInputText />
+                          </div>
+                      <div class="no-records" >
+                          <div class="no-records-inner py-2">
+                              <div class="no-records-icon">
+                                  <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M31.25 15.625C31.25 17.2826 30.5915 18.8723 29.4194 20.0444C28.2473 21.2165 26.6576 21.875 25 21.875C23.3424 21.875 21.7527 21.2165 20.5806 20.0444C19.4085 18.8723 18.75 17.2826 18.75 15.625C18.75 13.9674 19.4085 12.3777 20.5806 11.2056C21.7527 10.0335 23.3424 9.375 25 9.375C26.6576 9.375 28.2473 10.0335 29.4194 11.2056C30.5915 12.3777 31.25 13.9674 31.25 15.625ZM7.8125 8.59375C7.8125 7.14335 8.38867 5.75235 9.41426 4.72676C10.4398 3.70117 11.8308 3.125 13.2812 3.125H36.7188C38.1692 3.125 39.5602 3.70117 40.5857 4.72676C41.6113 5.75235 42.1875 7.14335 42.1875 8.59375V41.4062C42.1875 42.8567 41.6113 44.2477 40.5857 45.2732C39.5602 46.2988 38.1692 46.875 36.7188 46.875H13.2812C11.8308 46.875 10.4398 46.2988 9.41426 45.2732C8.38867 44.2477 7.8125 42.8567 7.8125 41.4062V8.59375ZM13.2812 6.25C12.6596 6.25 12.0635 6.49693 11.624 6.93647C11.1844 7.37601 10.9375 7.97215 10.9375 8.59375V31.25H15.625V26.5625C15.625 25.7337 15.9542 24.9388 16.5403 24.3528C17.1263 23.7667 17.9212 23.4375 18.75 23.4375H31.25C32.0788 23.4375 32.8737 23.7667 33.4597 24.3528C34.0458 24.9388 34.375 25.7337 34.375 26.5625V31.25H39.0625V8.59375C39.0625 7.97215 38.8156 7.37601 38.376 6.93647C37.9365 6.49693 37.3404 6.25 36.7188 6.25H13.2812ZM10.9375 41.4062C10.9375 42.0279 11.1844 42.624 11.624 43.0635C12.0635 43.5031 12.6596 43.75 13.2812 43.75H36.7188C37.3404 43.75 37.9365 43.5031 38.376 43.0635C38.8156 42.624 39.0625 42.0279 39.0625 41.4062V34.375H10.9375V41.4062Z" fill="#0071BD"/>
+                                      <rect x="10" y="34" width="30" height="10" fill="#0071BD"/>
+                                      <path d="M14.5201 37.9576C14.8132 37.6646 15.2106 37.5 15.625 37.5H34.375C34.7894 37.5 35.1868 37.6646 35.4799 37.9576C35.7729 38.2507 35.9375 38.6481 35.9375 39.0625C35.9375 39.4769 35.7729 39.8743 35.4799 40.1674C35.1868 40.4604 34.7894 40.625 34.375 40.625H15.625C15.2106 40.625 14.8132 40.4604 14.5201 40.1674C14.2271 39.8743 14.0625 39.4769 14.0625 39.0625C14.0625 38.6481 14.2271 38.2507 14.5201 37.9576Z" fill="white"/>
+                                  </svg>                
+                              </div>
+                              <div class="no-records-content">
+                                  <h4>No Patient Available</h4>
+                                  <p>There are no patients with “Raj” Please try  to adjust filter or diffrent patient name</p>
+                              </div>
+                          </div>
+                      </div>
+                  </p-tabPanel>
+                  <p-tabPanel header="By Patient I’d">
+                      <div class="fieldset mb-2">
+                          <input class="input-style" placeholder="Search Patient" type="text" pInputText />
+                          </div>
+                      <div class="list-box">
+                          <h5 class="p-text-secondary mb-2">Recent search</h5>
+                          <div class="user-detail">
+                              <p-avatar label="A T" styleClass="p-mr-2" 
+                              [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
+                              <div class="right">
+                                  <label>Aditya Tripathi</label>  
+                                  <p class="sub-title">26 Year,<span>Male</span></p>
+                              </div>
+                          </div>
+                      </div>
+                  </p-tabPanel>
+                </p-tabView>
+          </div>
+         
+         
+      </div>
+      <div class="notification-popup ml-4 mt-2">
+         <div class="inner-box">
+          <div class="header-box">
+              <h4>Notification</h4>
+              <div class="right">
+                  <p class="p-text-secondary">Only Show Unread</p>
+                  <p-inputSwitch class="mx-3"></p-inputSwitch>
+                  <button pButton pRipple type="button" icon="pi pi-external-link"
+                  class="p-button-rounded p-button-secondary p-button-text"></button>
               </div>
           </div>
+          <div class="tab-view mt-2">
+              <div class="tab-item active">
+                  <p>Dairect</p>
+              </div>
+              <div class="tab-item">
+                  <p>watching</p>
+              </div>
+          </div>
+          <div class="list-box mt-3">
+              <div class="list-header mb-2">
+                  <p class="p-text-secondary">LATEST</p>
+                  <p class="p-text-secondary ml-auto">Mark all as read</p>
+              </div>
+              <div class="list-item">
+                  <div class="left">
+                      <p-avatar label="A T" styleClass="p-mr-2" 
+                      [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
+                  </div>
+                  <div class="right">
+                      <span class="title">Manish Patil update an issue <span class="p-text-secondary">1 week ago</span></span>
+                      <span class="sub-title my-1">
+                          Create Intermediate pages for ECC Report,ECC QA and MSM Report
+                      </span>
+                      <small class="p-text-secondary">Ecc-3664 ready for release</small>
+                  </div>
+              </div>
+              <div class="list-item">
+                  <div class="left">
+                      <p-avatar label="A T" styleClass="p-mr-2" 
+                      [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
+                  </div>
+                  <div class="right">
+                      <span class="title" style="display:flex;">Manish Patil update an issue <span class="p-text-secondary">1 week ago</span> <span class="ml-auto"><i class="pi pi-circle-fill" style="font-size:.5rem; color: #0071BD;"></i></span></span>
+                      <span class="sub-title my-1">
+                          Create Intermediate pages for ECC Report,ECC QA and MSM Report
+                      </span>
+                      <small class="p-text-secondary">Ecc-3664 ready for release</small>
+                  </div>
+              </div>  
+          </div>
+         </div>
       </div>
   </div>
-</div>
+  
+  <!-- Roles  -->
+  <div class="role">
+      <ul class="icon-list-box">
+          <li class="list-item">
+              <div class="icon">
+                  <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 35.8622V5.43424C2 4.08981 3.08981 3 4.43424 3H45.8163C47.1607 3 48.2505 4.08981 48.2505 5.43424V35.8622C48.2505 37.2067 47.1607 38.2965 45.8163 38.2965H4.43424C3.08981 38.2965 2 37.2067 2 35.8622Z" fill="#4DCFE0"/>
+                      <path d="M2 35.8622V32.4543H48.2505V35.8622C48.2505 37.2067 47.1607 38.2965 45.8163 38.2965H4.43424C3.08981 38.2965 2 37.2067 2 35.8622Z" fill="#1185E0" fill-opacity="0.74"/>
+                      <path d="M19.0396 38.2965H31.2107V44.3821H19.0396V38.2965Z" fill="#1185E0"/>
+                      <path d="M14.1714 44.3821H36.0795V47.79H14.1714V44.3821Z" fill="#1185E0" fill-opacity="0.74"/>
+                      </svg>
+              </div>
+              <label for="">Front Desk</label>
+          </li>
+      </ul>
+  </div>
